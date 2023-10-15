@@ -3,20 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Platform
+  - Enemy
+  - Example
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Platform
+  - Ground
+  - Enemy
+  - Example
+  - Coverup
+  - Map
   - 
   - 
   - 
@@ -40,4 +44,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Coverup
+    uniqueID: 577102637
+    locked: 0
+  - name: Map
+    uniqueID: 2156151459
+    locked: 0
+  - name: Ground
+    uniqueID: 1694946213
+    locked: 0
+  - name: Enemy
+    uniqueID: 1069662611
+    locked: 0
+  - name: Player
+    uniqueID: 1071536839
+    locked: 0
+  - name: Example
+    uniqueID: 815319985
     locked: 0

@@ -58,6 +58,7 @@ public class PupumpkinScript : Entity
         {
             PlayerInput player = collision.gameObject.GetComponent<PlayerInput>();
             player.TakeDamage();
+            player.audioSource.PlayOneShot(player.playerHurtSound);
         }
     }
 }

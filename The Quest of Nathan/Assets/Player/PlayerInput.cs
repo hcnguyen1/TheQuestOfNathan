@@ -12,7 +12,13 @@ public class PlayerInput : Entity
     // Audio
     public AudioSource audioSource;
     public AudioClip playerAttackSound;
-    
+    public AudioClip playerHurtSound;
+    public AudioClip playerWalkSound;
+    public AudioClip playerJumpSound;
+
+    private bool isWalkingAudioCooldown = false;
+    private float walkingAudioCooldownTimer = 0.4f;
+
     // Sprite Renderer and Animation
     Rigidbody2D rb;
     private Animator animator;
@@ -42,6 +48,7 @@ public class PlayerInput : Entity
     // Update is called once per frame
     void Update()
     {
+        
         PlayerControl();
         PlayerAttack();
     }
@@ -58,6 +65,7 @@ public class PlayerInput : Entity
             rb.velocity = new Vector2(rb.velocity.x, 10);
             if (rb.velocity.y > .1f)
             {
+                audioSource.PlayOneShot(playerJumpSound);
                 animator.SetBool("jumping", true);
             }
         }
@@ -72,12 +80,24 @@ public class PlayerInput : Entity
         {
             sprite.flipX = false;
             animator.SetBool("running", true);
+            if (!isWalkingAudioCooldown)
+            {
+                audioSource.PlayOneShot(playerWalkSound);
+                isWalkingAudioCooldown = true;
+                StartCoroutine(ResetWalkingAudioCooldown());
+            }
         }
         else if (horizontalInput < 0)
         {
-            animator.SetBool("running", true);
             sprite.flipX = true;
-        }   
+            animator.SetBool("running", true);
+            if (!isWalkingAudioCooldown)
+            {
+                audioSource.PlayOneShot(playerWalkSound);
+                isWalkingAudioCooldown = true;
+                StartCoroutine(ResetWalkingAudioCooldown());
+            }
+        }
         else
         {
             animator.SetBool("running", false);
@@ -85,6 +105,11 @@ public class PlayerInput : Entity
 
         // Move player
         rb.velocity = new Vector2(horizontalInput * movementSpeed, rb.velocity.y);
+    }
+    private IEnumerator ResetWalkingAudioCooldown()
+    {
+        yield return new WaitForSeconds(walkingAudioCooldownTimer);
+        isWalkingAudioCooldown = false;
     }
 
     private void PlayerAttack()

@@ -6,6 +6,7 @@ public class Entity : MonoBehaviour
 {
     [SerializeField] public int HP;
 
+
     public void TakeDamage()
     {
         HP--;

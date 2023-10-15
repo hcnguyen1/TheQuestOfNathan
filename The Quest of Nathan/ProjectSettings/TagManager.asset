@@ -21,7 +21,7 @@ TagManager:
   - Example
   - Coverup
   - Map
-  - 
+  - WeaponHitbox
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: WeaponHitbox
+    uniqueID: 2447290553
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

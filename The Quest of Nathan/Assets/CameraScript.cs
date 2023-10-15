@@ -20,14 +20,15 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Cannot find Player
+        if (player == null || player.transform == null)
+        {
+            // Load Game Over Scene
+            SceneManager.LoadScene("Death");
+        }
         Vector3 targetPosition = player.position + offset;
         targetPosition.x = Mathf.Clamp(targetPosition.x, leftBoundary, rightBoundary);
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-
-        if(player == null)
-        {
-            Debug.Log("Temporary");
-        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossScript : Entity {
@@ -63,6 +64,8 @@ public class BossScript : Entity {
         Debug.Log("Attack");
         canAttack = false;
         player.GetComponent<PlayerInput>().TakeDamage();
+        // Play Player Hurt sound
+        player.GetComponent<PlayerInput>().audioSource.PlayOneShot(player.GetComponent<PlayerInput>().playerHurtSound);
         StartCoroutine(AttackCooldown());
     }
 
